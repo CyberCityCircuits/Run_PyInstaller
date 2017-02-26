@@ -18,7 +18,7 @@ import lxml.etree as et
 
 #from tkinter import *
 from tkinter import messagebox, Label
-from tkinter import simpledialog
+from tkinter import simpledialog, filedialog 
 
 
 var.currdate = dt.date.today().strftime("%Y%m%d")
@@ -80,11 +80,11 @@ def mk_log():
     
     
 def msg(text):
-    messagebox.showinfo(var.long_app, text)
+    messagebox.showinfo(var.app_name, text)
     
     
 def msg_error(text):
-    messagebox.showerror(var.long_app, text)
+    messagebox.showerror(var.app_name, text)
 
     
 #set wait command
@@ -101,6 +101,21 @@ def set_date_time():
     var.currdate = dt.date.today().strftime("%Y%m%d")
     var.currtime = dt.datetime.now().strftime("%H%M%S")
     
-        
     
+    
+def open_file():
+    var.file_name = filedialog.askopenfilename(filetypes=(("Python Scripts","*.py*"),("All Files", ("*.*"))))
+    print (var.file_name)
+    sleep(0)
+    
+def install_pkg(pkg):
+    msg("Installing " + pkg + "\nPlease Be Patient.")
+    os.system ("pip install " + pkg)
+    msg("Install Complete")
+
+def upgrade_pkg(pkg):
+    msg("Upgrading " + pkg + "\nPlease Be Patient.")
+    os.system ("pip install --upgrade " + pkg)    
+    msg("Upgrade Complete")
+
 

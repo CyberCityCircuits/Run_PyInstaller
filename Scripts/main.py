@@ -42,12 +42,12 @@ class Window(Frame):
         topbar.add_cascade(label="File", menu=file_menu)
 
         
-        build_menu.add_command(label="Compile Python Script")
+        build_menu.add_command(label="Compile Python Script", command=compile_01)
         build_menu.add_command(label="Compile Python Script with No Console")
         topbar.add_cascade(label="Build", menu=build_menu)
         
-        tools_menu.add_command(label ="Install PyInstaller")
-        tools_menu.add_command(label="Upgrade PyInstaller")
+        tools_menu.add_command(label ="Install PyInstaller", command=install_pyinstaller)
+        tools_menu.add_command(label="Upgrade PyInstaller", command=upgrade_pyinstaller)
         topbar.add_cascade(label="Tools", menu=tools_menu)
         
         
@@ -72,8 +72,16 @@ def show_about():
         "\n" + var.email + "\n\n"
         "www.DREAM-Enterprise.com")
     
+def compile_01():
+    tasks.open_file()
+        
     
-    
+def install_pyinstaller():
+    tasks.install_pkg(var.pyinstaller)
+        
+def upgrade_pyinstaller():
+    tasks.upgrade_pkg(var.pyinstaller)
+
                 
 root = Tk()
 

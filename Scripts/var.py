@@ -6,22 +6,24 @@ Created on Thu Feb 23 12:18:16 2017
 """
 import datetime as dt
 
-currdate = dt.date.today().strftime("%Y%m%d")
-currtime = dt.datetime.now().strftime("%H%M%S")
 
 #set varibales
 app_name = "Run_PyInstaller"
 ver = "0.02.00"
 build = "02232017"
 
-
 name = app_name + " V" + ver
 
 email = "David@DREAM-Enterprise.com"
 
-package = "pyinstaller"
+currdate = dt.date.today().strftime("%Y%m%d")
+currtime = dt.datetime.now().strftime("%H%M%S")
+
+pyinstaller = "pyinstaller"
 text1 = "readme.txt"
 text2 = "changelog.txt"
+
+file_name = ""
 
 #set system varibles
 width = 300
