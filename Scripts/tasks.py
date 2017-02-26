@@ -105,8 +105,7 @@ def set_date_time():
     
 def open_file():
     var.file_name = filedialog.askopenfilename(filetypes=(("Python Scripts","*.py*"),("All Files", ("*.*"))))
-    print (var.file_name)
-    sleep(0)
+
     
 def install_pkg(pkg):
     msg("Installing " + pkg + "\nPlease Be Patient.")

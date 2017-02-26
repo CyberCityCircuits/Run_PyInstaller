@@ -42,17 +42,23 @@ class Window(Frame):
         topbar.add_cascade(label="File", menu=file_menu)
 
         
-        build_menu.add_command(label="Compile Python Script", command=compile_01)
-        build_menu.add_command(label="Compile Python Script with No Console")
+        build_menu.add_command(label="Compile Python Script",
+                               command=compile_01)
+        build_menu.add_command(label="Compile Python Script with No Console", 
+                               command=compile_02)
         topbar.add_cascade(label="Build", menu=build_menu)
         
-        tools_menu.add_command(label ="Install PyInstaller", command=install_pyinstaller)
-        tools_menu.add_command(label="Upgrade PyInstaller", command=upgrade_pyinstaller)
+        tools_menu.add_command(label ="Install PyInstaller", 
+                               command=install_pyinstaller)
+        tools_menu.add_command(label="Upgrade PyInstaller", 
+                               command=upgrade_pyinstaller)
         topbar.add_cascade(label="Tools", menu=tools_menu)
         
         
-        help_menu.add_command(label="Directions", command=funct_not_supp)
-        help_menu.add_command(label="About", command=show_about)
+        help_menu.add_command(label="Directions", 
+                              command=funct_not_supp)
+        help_menu.add_command(label="About", 
+                              command=show_about)
         topbar.add_cascade(label="Help", menu=help_menu)
         
 def funct_not_supp():
@@ -74,7 +80,13 @@ def show_about():
     
 def compile_01():
     tasks.open_file()
-        
+    os.system('pyinstaller ' + var.file_name + ' -F')    
+    
+
+def compile_02():
+    tasks.open_file()
+    os.system('pyinstaller --noconsole '+ var.file_name +' main.py -F')    
+
     
 def install_pyinstaller():
     tasks.install_pkg(var.pyinstaller)

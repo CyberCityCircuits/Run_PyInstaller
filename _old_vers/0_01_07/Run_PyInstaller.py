@@ -32,6 +32,8 @@ cent_width = int(width)-1
 currdate = dt.date.today().strftime("%Y%m%d")
 currtime = dt.datetime.now().strftime("%H%M")
 
+no_console = " " 
+
 wait = .5
 splash_wait = 2
 
@@ -185,8 +187,12 @@ def user_input():
     
 #confirm data from user_input()
 def user_chk():
+    
     global op_code
     global filename
+    global no_console
+    
+    header()
     
     print ()
     print ("  File to Compile:          " + app_py)
@@ -195,16 +201,23 @@ def user_chk():
     print ("  Build Date:               " + currdate)
     print ("  Build Time:               " + currtime)
     print ()
-    print ("Option Codes:")
-    print ("1 - No Console (Used with GUIs)")
+    print ("  Option Codes:")
+    print ("  1 - No Console (Used with GUIs) ["+ no_console + "]")
     print ()
     option = input("  Is this correct? (Y/N): ")
     if option.lower() == ("y") or option.lower() == ("yes"):
         print ()
         filename = (app_name + " " + app_version + " - " + currdate + " " + currtime)                
     elif option == "1":
-        op_code = 1
-        user_chk()
+        if op_code == 0:
+            op_code = 1
+            no_console = "X"
+            user_chk()
+        elif op_code == 1:
+            op_code = 0
+            no_console = " "
+            user_chk()
+            
     else:
         print ()
         print ("  Please Check Info and Try Again.")
@@ -236,7 +249,7 @@ def chk_file():
 
 #run pyinstaller
 def run_pyinstaller():
-    if op_code == str(1):
+    if op_code == 1:
         os.system('pyinstaller --noconsole ' + app_py + ' -F')
     else:
         os.system('pyinstaller ' + app_py + ' -F')
@@ -253,6 +266,13 @@ def copy_readme():
     test_text2 = Path(text2)    
     if test_text2.is_file():
         copy(text2,filename + "/" + text2)
+        
+def header():
+    os.system('cls')
+    print()
+    print()
+    print ((application + " V" + ver).center(cent_width))
+    print()
         
 #define main
 def main():
