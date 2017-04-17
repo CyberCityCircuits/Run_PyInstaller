@@ -80,12 +80,14 @@ def show_about():
     
 def compile_01():
     tasks.open_file()
-    os.system('pyinstaller ' + var.file_name + ' -F')    
+    tasks.msg(var.file_name)
+    #os.system('pyinstaller ' + var.file_name + ' -F')    
+    os.system('pyinstaller main.py -F')    
     
 
 def compile_02():
     tasks.open_file()
-    os.system('pyinstaller --noconsole '+ var.file_name +' main.py -F')    
+    os.system('pyinstaller --noconsole '+ var.file_name +' -F')    
 
     
 def install_pyinstaller():
